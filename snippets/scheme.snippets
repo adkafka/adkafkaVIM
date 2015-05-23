@@ -1,0 +1,23 @@
+snippet (
+	(${1})${2}
+snippet if
+	(if (${1}) 
+	  ${2:#t} 
+	  ${3:#f}
+	)${4}
+snippet def
+	(define ${1})${2}
+snippet cond
+	(cond (${1}) ${2}
+		  (${3}) ${4}
+	)
+snippet c
+	(${1}) $2
+snippet fun
+	(define (${1})
+	  ${2}
+	)
+snippet h
+	(car ${1:l})${2}
+snippet t
+	(cdr ${1:l})${2}
