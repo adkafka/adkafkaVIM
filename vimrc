@@ -34,7 +34,7 @@ set wildmenu
 set wildmode=list:longest,full
 
 "Turn on visual bell instead of beep
-set vb
+set visualbell
 
 "Time between key commands (ms)
 set timeoutlen=500
@@ -70,10 +70,10 @@ set dictionary=/usr/share/dict/words
 "Statusline in .vim/plugin/statusline.vim
 
 "snipmate mutiple snippets
-au BufRead *.php set ft=php.html
-au BufNewFile *.php set ft=php.html
+autocmd BufRead *.php set ft=php.html
+autocmd BufNewFile *.php set ft=php.html
 " markdown extension
-au BufRead,BufNewFile *.md set filetype=markdown
+autocmd BufRead,BufNewFile *.md set filetype=markdown
 
 "Mappings for dragvisuals plugin
 vnoremap  <expr>  h        DVB_Drag('left')
