@@ -49,8 +49,7 @@ set hlsearch "Highlight search results
 filetype plugin on
 filetype indent on "Not needed but will be later prolly
 
-"Reload all the snippets
-call ReloadAllSnippets()
+
 
 "Turn off bakups and swap files etc
 set backupdir=~/.vim/backups  "files sent here 
@@ -90,7 +89,7 @@ noremap Y y$
 noremap <silent> <Leader>all :tab sball<CR>
 noremap <ENTER> o<Esc>
 noremap <S-Enter> O<Esc>
-noremap <silent> <C-S> :source ~/.vimrc<CR>
+noremap <silent> <C-S> :source ~/.vimrc<CR>:call ReloadAllSnippets()<CR>
 noremap <silent> <Leader><Leader> :let @/ = ""<CR>
 nnoremap <C-Down> }
 nnoremap <C-Up> {
