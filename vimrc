@@ -6,6 +6,9 @@
 "SETTINGS
 """"""""""
 
+"Set snippet author
+let snips_author = "Adam Kafka"
+
 "Load pathogen
 execute pathogen#infect()
 
@@ -49,17 +52,15 @@ set hlsearch "Highlight search results
 filetype plugin on
 filetype indent on "Not needed but will be later prolly
 
-
-
 "Turn off bakups and swap files etc
 set backupdir=~/.vim/backups  "files sent here 
 set noswapfile "Dont use swap files
 
-"Line number
+"Show line numbers
 set number
 
-"Turn off auto commenting
-set comments-=:// 
+"Disable autocommenting when using o/O. :help fo-table to see other options
+set formatoptions-=o
  
 "Disable folding
 set nofoldenable
@@ -69,46 +70,73 @@ set dictionary=/usr/share/dict/words
 
 "Statusline in .vim/plugin/statusline.vim
 
-"snipmate mutiple snippets
-autocmd BufRead *.php set ft=php.html
-autocmd BufNewFile *.php set ft=php.html
-" markdown extension
-autocmd BufRead,BufNewFile *.md set filetype=markdown
+"Load Global syntax
+augroup global
+    autocmd!
+    autocmd BufRead,BufNewFile * source ~/.vim/syntax/global.vim
+augroup END
+"php and html filetype
+augroup phpAndHtml
+    autocmd!
+    autocmd BufRead,BufNewFile *.php set ft=php.html
+augroup END
+" markdown extension TODO, move this to ftdetect
+augroup Markdown
+    autocmd!
+    autocmd BufRead,BufNewFile *.md set filetype=markdown
+augroup END
+
+" In the quickfix window, <CR> is used to jump to the entry under the
+" cursor, so undefine the mapping there.
+autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
 
 "Mappings for dragvisuals plugin
-vnoremap  <expr>  h        DVB_Drag('left')
-vnoremap  <expr>  l        DVB_Drag('right')
-vnoremap  <expr>  j        DVB_Drag('down')
-vnoremap  <expr>  k        DVB_Drag('up')
+vnoremap  <expr>  <LEFT>        DVB_Drag('left')
+vnoremap  <expr>  <RIGHT>        DVB_Drag('right')
+vnoremap  <expr>  <UP>        DVB_Drag('down')
+vnoremap  <expr>  <DOWN>        DVB_Drag('up')
 
 
 """""""""
 "MAPPINGS
 """""""""
-noremap Y y$
-noremap <silent> <Leader>all :tab sball<CR>
-noremap <ENTER> o<Esc>
-noremap <S-Enter> O<Esc>
-noremap <silent> <C-S> :source ~/.vimrc<CR>:call ReloadAllSnippets()<CR>
-noremap <silent> <Leader><Leader> :let @/ = ""<CR>
-nnoremap <C-Down> }
-nnoremap <C-Up> {
-nnoremap <Leader>p "*p
-nnoremap <Leader>P "*P
+"Move the screen (not cursor) with the arrow keys
+nnoremap <Down> <C-E>
+nnoremap <Up> <C-Y>
+nnoremap <LEFT> zh
+nnoremap <RIGHT> zl
+
+nnoremap Y y$
 nnoremap cb bcw
 nnoremap cB BcW
-"nmap p p==
-"nmap P P==
-"nmap p [p  "Auto indent paste
-"nmap P [P
+nnoremap gh <C-]>
+
+nnoremap <ENTER> o<Esc>
+nnoremap <S-Enter> O<Esc>
+
+nnoremap <silent> <C-S> :source ~/.vimrc<CR>:call ReloadAllSnippets()<CR>
+nnoremap <C-Down> }
+nnoremap <C-Up> {
+
+"Leader maps
+nnoremap <silent> <Leader><Leader> :let @/ = ""<CR>
+nnoremap <silent> <Leader>all :tab sball<CR>
+nnoremap <Leader>p "*p
+nnoremap <Leader>P "*P
+"Insert filename
+inoremap <Leader>fn <C-R>=expand("%:t")<CR>
+"Get to snippets
+noremap <Leader>snip :e ~/.vim/snippets/<CR>
+"Edit vimrc
+noremap <Leader>rc :e ~/.vimrc<CR>
+"cd to curent dir
+nnoremap <Leader>cd :lcd %:h<CR>:pwd<CR>
 
 "Switch v and ctrl-v
 nnoremap    v   <C-V>
 nnoremap <C-V>     v
-
 vnoremap    v   <C-V>
 vnoremap <C-V>     v
-
 "Switch ; and :
 nnoremap  ;  :
 nnoremap  :  ;
@@ -117,31 +145,16 @@ vnoremap  :  ;
 
 "Run on all visual lines
 vnoremap . :normal .<CR>
-
 "Macros on every viusual line
 vnoremap  @  :normal @
 
-"Move the screen up and down
-noremap <S-Down> <C-E>
-noremap <S-Up> <C-Y>
-
 "Switch windows easily
-noremap <C-J> <C-W>j<C-W>
-noremap <C-K> <C-W>k<C-W>
+nnoremap <silent> <C-K> :wincmd k<CR>
+nnoremap <silent> <C-J> :wincmd j<CR>
+nnoremap <silent> <C-H> :wincmd h<CR>
+nnoremap <silent> <C-L> :wincmd l<CR>
 
-"Insert filename
-inoremap <Leader>fn <C-R>=expand("%:t")<CR>
-
-"Get to snippets
-noremap <Leader>snip :e ~/.vim/snippets/<CR>
-
-"Edit vimrc
-noremap <Leader>rc :e ~/.vimrc<CR>
-
-"cd to cuurent dir
-nnoremap <silent> <Leader>cd :lcd %:h<CR>
-
-"Display registedrs
+"Display registedrs and diable normal Q functionality
 nnoremap Q :reg<CR>
 
 " allow command line editing like emacs

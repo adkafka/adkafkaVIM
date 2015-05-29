@@ -23,7 +23,7 @@
 "         When you edit it, do not erase trailing-blanks.
 
 set laststatus=2
-set statusline+=%1*%-52F\ 
+set statusline=%1*%-32F\ 
 ""set statusline+=%2*\ %{&ff=='unix'?'\\n':(&ff=='mac'?'\\r':'\\r\\n')}\ 
 set statusline+=%3*\ %{&fenc!=''?&fenc:&enc}\ 
 set statusline+=%1*\ %Y\ 
