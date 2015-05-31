@@ -1,10 +1,10 @@
-" Things to add:
+" TODO: add a mapping for this (Cleans up comments on c/java)
 " %s:/\*\([A-z]\):/\* \1:g  
 " %s://\([A-z]\):// \1:g  
-""""""""""
 
-"SETTINGS
-""""""""""
+"""""""""
+"OPTIONS"
+"""""""""
 
 "Set snippet author
 let snips_author = "Adam Kafka"
@@ -12,7 +12,7 @@ let snips_author = "Adam Kafka"
 "Load pathogen
 execute pathogen#infect()
 
-"Set my Leader
+"Set my Leader as \ (Backslash)
 let mapleader = "\\"
 
 "Turn Syntax on
@@ -30,11 +30,12 @@ set expandtab
 
 "Turn Auto-indent and smart indent
 set autoindent smartindent
-set smarttab
       
 "Set tab auto completion for editing files
 set wildmenu
 set wildmode=list:longest,full
+"Recommend options using tab in command mode
+set smarttab
 
 "Turn on visual bell instead of beep
 set visualbell
@@ -52,7 +53,7 @@ set hlsearch "Highlight search results
 filetype plugin on
 filetype indent on "Not needed but will be later prolly
 
-"Turn off bakups and swap files etc
+"Turn off backups and swap files etc
 set backupdir=~/.vim/backups  "files sent here 
 set noswapfile "Dont use swap files
 
@@ -70,6 +71,9 @@ set dictionary=/usr/share/dict/words
 
 "Statusline in .vim/plugin/statusline.vim
 
+""""""""""""""
+"Autocommands"
+""""""""""""""
 "Load Global syntax
 augroup global
     autocmd!
@@ -85,21 +89,23 @@ augroup Markdown
     autocmd!
     autocmd BufRead,BufNewFile *.md set filetype=markdown
 augroup END
-
 " In the quickfix window, <CR> is used to jump to the entry under the
 " cursor, so undefine the mapping there.
-autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+augroup QFwindow
+    autocmd!
+    autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
+augroup END
 
+
+""""""""""
+"MAPPINGS"
+""""""""""
 "Mappings for dragvisuals plugin
 vnoremap  <expr>  <LEFT>        DVB_Drag('left')
 vnoremap  <expr>  <RIGHT>        DVB_Drag('right')
 vnoremap  <expr>  <UP>        DVB_Drag('down')
 vnoremap  <expr>  <DOWN>        DVB_Drag('up')
 
-
-"""""""""
-"MAPPINGS
-"""""""""
 "Move the screen (not cursor) with the arrow keys
 nnoremap <Down> <C-E>
 nnoremap <Up> <C-Y>
@@ -111,16 +117,22 @@ nnoremap cb bcw
 nnoremap cB BcW
 nnoremap gh <C-]>
 
-nnoremap <ENTER> o<Esc>
-nnoremap <S-Enter> O<Esc>
+"Add new blank lines in normal mode
+nnoremap <ENTER> o<C-U><Esc>
+nnoremap <S-Enter> O<C-U><Esc>
 
+"Reload settings (vimrc and snippets)
 nnoremap <silent> <C-S> :source ~/.vimrc<CR>:call ReloadAllSnippets()<CR>
+
+"Mapping for movements
 nnoremap <C-Down> }
 nnoremap <C-Up> {
 
-"Leader maps
+"Clear search
 nnoremap <silent> <Leader><Leader> :let @/ = ""<CR>
+"Open all buffers in tabs
 nnoremap <silent> <Leader>all :tab sball<CR>
+"System paste
 nnoremap <Leader>p "*p
 nnoremap <Leader>P "*P
 "Insert filename
@@ -129,6 +141,8 @@ inoremap <Leader>fn <C-R>=expand("%:t")<CR>
 noremap <Leader>snip :e ~/.vim/snippets/<CR>
 "Edit vimrc
 noremap <Leader>rc :e ~/.vimrc<CR>
+noremap <Leader>vrc :vsplit ~/.vimrc<CR>
+noremap <Leader>hrc :split ~/.vimrc<CR>
 "cd to curent dir
 nnoremap <Leader>cd :lcd %:h<CR>:pwd<CR>
 
