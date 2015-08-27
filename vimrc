@@ -84,11 +84,6 @@ augroup phpAndHtml
     autocmd!
     autocmd BufRead,BufNewFile *.php set ft=php.html
 augroup END
-" markdown extension TODO, move this to ftdetect
-augroup Markdown
-    autocmd!
-    autocmd BufRead,BufNewFile *.md set filetype=markdown
-augroup END
 " In the quickfix window, <CR> is used to jump to the entry under the
 " cursor, so undefine the mapping there.
 augroup QFwindow
@@ -116,6 +111,12 @@ nnoremap Y y$
 nnoremap cb bcw
 nnoremap cB BcW
 nnoremap gh <C-]>
+
+"Esc things
+inoremap jk <Esc>
+inoremap kj <Esc>
+inoremap ;w <Esc>:w<CR>
+
 
 "Add new blank lines in normal mode
 nnoremap <ENTER> o<C-U><Esc>
