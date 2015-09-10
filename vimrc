@@ -112,6 +112,12 @@ nnoremap cb bcw
 nnoremap cB BcW
 nnoremap gh <C-]>
 
+nnoremap L $
+nnoremap H ^
+
+vnoremap < <gv
+vnoremap > >gv
+
 "Esc things
 inoremap jk <Esc>
 inoremap kj <Esc>
@@ -123,7 +129,7 @@ nnoremap <ENTER> o<C-U><Esc>
 nnoremap <S-Enter> O<C-U><Esc>
 
 "Reload settings (vimrc and snippets)
-nnoremap <silent> <C-S> :source ~/.vimrc<CR>:call ReloadAllSnippets()<CR>
+nnoremap <silent> <C-S> :source ~/.vimrc<CR>
 
 "Mapping for movements
 nnoremap <C-Down> }
@@ -145,7 +151,7 @@ noremap <Leader>rc :e ~/.vimrc<CR>
 noremap <Leader>vrc :vsplit ~/.vimrc<CR>
 noremap <Leader>hrc :split ~/.vimrc<CR>
 "cd to curent dir
-nnoremap <Leader>cd :lcd %:h<CR>:pwd<CR>
+nnoremap cd :lcd %:h<CR>:pwd<CR>
 
 "Switch v and ctrl-v
 nnoremap    v   <C-V>
