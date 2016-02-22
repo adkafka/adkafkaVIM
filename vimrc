@@ -125,8 +125,9 @@ inoremap ;w <Esc>:w<CR>
 
 
 "Add new blank lines in normal mode
-nnoremap <ENTER> o<C-U><Esc>
-nnoremap <S-Enter> O<C-U><Esc>
+
+nnoremap <ENTER> o<Esc>
+nnoremap <S-Enter> O<Esc>
 
 "Reload settings (vimrc and snippets)
 nnoremap <silent> <C-S> :source ~/.vimrc<CR>
