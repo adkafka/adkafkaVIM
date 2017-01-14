@@ -6,14 +6,25 @@
 "OPTIONS"
 """""""""
 
+
+"Vim plugins
+call plug#begin('~/.vim/plugged')
+"Vimtex
+Plug 'lervag/vimtex'
+" Add plugins to &runtimepath
+call plug#end()
+
 "Set snippet author
 let snips_author = "Adam Kafka"
 
 "Load pathogen
 execute pathogen#infect()
 
+let g:tex_flavor = 'latex'
+
 "Set my Leader as \ (Backslash)
 let mapleader = "\\"
+let localleader = "\\"
 
 "Turn Syntax on
 syntax on
@@ -117,6 +128,9 @@ nnoremap H ^
 
 vnoremap < <gv
 vnoremap > >gv
+
+"Turn off no indent when line starts with #
+inoremap # X#
 
 "Esc things
 inoremap jk <Esc>
