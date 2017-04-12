@@ -6,6 +6,11 @@
 "OPTIONS"
 """""""""
 
+"Disallow backups in crontab
+if $VIM_CRONTAB == "true"
+    set nobackup
+    set nowritebackup
+endif
 
 "Vim plugins
 call plug#begin('~/.vim/plugged')
@@ -13,6 +18,9 @@ call plug#begin('~/.vim/plugged')
 Plug 'lervag/vimtex'
 " Add plugins to &runtimepath
 call plug#end()
+
+"Session stuff
+let g:session_autoload = 'no'
 
 "Set snippet author
 let snips_author = "Adam Kafka"
@@ -35,7 +43,7 @@ set nolist
 set linebreak
 
 "Tab stuff
-set tabstop=4
+set softtabstop=4
 set shiftwidth=4
 set expandtab
 
@@ -85,10 +93,20 @@ set dictionary=/usr/share/dict/words
 """"""""""""""
 "Autocommands"
 """"""""""""""
+"Don't expand tabs on makefiles
+augroup make
+    autocmd!
+    autocmd FileType make setlocal noexpandtab
+augroup END
 "Load Global syntax
 augroup global
     autocmd!
     autocmd BufRead,BufNewFile * source ~/.vim/syntax/global.vim
+augroup END
+"Python
+augroup python
+    autocmd!
+    autocmd BufRead,BufNewFile *.py set cindent
 augroup END
 "php and html filetype
 augroup phpAndHtml
@@ -113,8 +131,8 @@ vnoremap  <expr>  <UP>        DVB_Drag('down')
 vnoremap  <expr>  <DOWN>        DVB_Drag('up')
 
 "Move the screen (not cursor) with the arrow keys
-nnoremap <Down> <C-E>
-nnoremap <Up> <C-Y>
+nnoremap <Down> <C-E>j
+nnoremap <Up> <C-Y>k
 nnoremap <LEFT> zh
 nnoremap <RIGHT> zl
 
@@ -125,6 +143,8 @@ nnoremap gh <C-]>
 
 nnoremap L $
 nnoremap H ^
+
+nnoremap gr gT
 
 vnoremap < <gv
 vnoremap > >gv
