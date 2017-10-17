@@ -34,6 +34,9 @@ let g:tex_flavor = 'latex'
 let mapleader = "\\"
 let localleader = "\\"
 
+"Turn off auto save (plugin)
+let g:session_autosave = 'no'
+
 "Turn Syntax on
 syntax on
 
