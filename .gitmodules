@@ -40,3 +40,6 @@
 [submodule "bundle/vim-instant-markdown"]
 	path = bundle/vim-instant-markdown
 	url = git@github.com:suan/vim-instant-markdown.git
+[submodule "bundle/vim-wordmotion"]
+	path = bundle/vim-wordmotion
+	url = https://github.com/chaoren/vim-wordmotion.git

@@ -43,6 +43,7 @@ set nolist
 set linebreak
 
 "Tab stuff
+set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
@@ -143,6 +144,8 @@ nnoremap gh <C-]>
 
 nnoremap L $
 nnoremap H ^
+vnoremap L $
+vnoremap H ^
 
 nnoremap gr gT
 
