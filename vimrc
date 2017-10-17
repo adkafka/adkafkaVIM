@@ -142,12 +142,13 @@ nnoremap cb bcw
 nnoremap cB BcW
 nnoremap gh <C-]>
 
+" gr to previous tab
+nnoremap gr gT
+
 nnoremap L $
 nnoremap H ^
 vnoremap L $
 vnoremap H ^
-
-nnoremap gr gT
 
 vnoremap < <gv
 vnoremap > >gv
@@ -180,6 +181,8 @@ nnoremap <silent> <Leader>all :tab sball<CR>
 "System paste
 nnoremap <Leader>p "*p
 nnoremap <Leader>P "*P
+"Delete  to null register
+nnoremap <leader>d "_d
 "Insert filename
 inoremap <Leader>fn <C-R>=expand("%:t")<CR>
 "Get to snippets
