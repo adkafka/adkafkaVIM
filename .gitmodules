@@ -27,16 +27,16 @@
 	url = https://github.com/briancollins/vim-jst.git
 [submodule "bundle/vimtex"]
 	path = bundle/vimtex
-	url = git@github.com:lervag/vimtex.git
+	url = https://github.com/lervag/vimtex.git
 [submodule "bundle/vim-session"]
 	path = bundle/vim-session
-	url = git@github.com:xolox/vim-session.git
+	url = https://github.com/xolox/vim-session.git
 [submodule "bundle/vim-misc"]
 	path = bundle/vim-misc
-	url = git@github.com:xolox/vim-misc.git
+	url = https://github.com/xolox/vim-misc.git
 [submodule "bundle/vim-instant-markdown"]
 	path = bundle/vim-instant-markdown
-	url = git@github.com:suan/vim-instant-markdown.git
+	url = https://github.com/suan/vim-instant-markdown.git
 [submodule "bundle/vim-wordmotion"]
 	path = bundle/vim-wordmotion
 	url = https://github.com/chaoren/vim-wordmotion.git
