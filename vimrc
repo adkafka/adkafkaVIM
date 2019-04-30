@@ -1,29 +1,9 @@
-" TODO: add a mapping for this (Cleans up comments on c/java)
-" %s:/\*\([A-z]\):/\* \1:g  
-" %s://\([A-z]\):// \1:g  
-
-"""""""""
-"OPTIONS"
-"""""""""
-
-"Disallow backups in crontab
-if $VIM_CRONTAB == "true"
-    set nobackup
-    set nowritebackup
-endif
-
-"Session stuff
-let g:session_autoload = 'no'
-
-"Set snippet author
-let snips_author = "Adam Kafka"
-
 "Set my Leader as \ (Backslash)
 let mapleader = "\\"
 let localleader = "\\"
 
-"Turn off auto save (plugin)
-let g:session_autosave = 'no'
+"Set background
+set background = "dark"
 
 "Turn Syntax on
 syntax on
@@ -34,9 +14,9 @@ set nolist
 set linebreak
 
 "Tab stuff
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set expandtab
 
 "Turn Auto-indent and smart indent
@@ -59,10 +39,6 @@ set incsearch "searches as you type
 set ignorecase "Ignore case when searhcing
 set smartcase "Wont ignore if searching for Smart because first letter is capital
 set hlsearch "Highlight search results
-
-"Set filtype plugin for SnipMate
-filetype plugin on
-filetype indent on "Not needed but will be later prolly
 
 "Turn off backups and swap files etc
 set backupdir=~/.vim/backups  "files sent here 
@@ -95,33 +71,10 @@ augroup global
     autocmd!
     autocmd BufRead,BufNewFile * source ~/.vim/syntax/global.vim
 augroup END
-"Python
-augroup python
-    autocmd!
-    autocmd BufRead,BufNewFile *.py set cindent
-augroup END
-"php and html filetype
-augroup phpAndHtml
-    autocmd!
-    autocmd BufRead,BufNewFile *.php set ft=php.html
-augroup END
-" In the quickfix window, <CR> is used to jump to the entry under the
-" cursor, so undefine the mapping there.
-augroup QFwindow
-    autocmd!
-    autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
-augroup END
-
 
 """"""""""
 "MAPPINGS"
 """"""""""
-"Mappings for dragvisuals plugin
-vnoremap  <expr>  <LEFT>        DVB_Drag('left')
-vnoremap  <expr>  <RIGHT>        DVB_Drag('right')
-vnoremap  <expr>  <UP>        DVB_Drag('down')
-vnoremap  <expr>  <DOWN>        DVB_Drag('up')
-
 "Move the screen (not cursor) with the arrow keys
 nnoremap <Down> <C-E>j
 nnoremap <Up> <C-Y>k
@@ -133,27 +86,23 @@ nnoremap cb bcw
 nnoremap cB BcW
 nnoremap gh <C-]>
 
+" gr to previous tab
+nnoremap gr gT
+
 nnoremap L $
 nnoremap H ^
 vnoremap L $
 vnoremap H ^
 
-nnoremap gr gT
-
 vnoremap < <gv
 vnoremap > >gv
-
-"Turn off no indent when line starts with #
-inoremap # X#
 
 "Esc things
 inoremap jk <Esc>
 inoremap kj <Esc>
 inoremap ;w <Esc>:w<CR>
 
-
 "Add new blank lines in normal mode
-
 nnoremap <ENTER> o<Esc>
 nnoremap <S-Enter> O<Esc>
 
@@ -166,19 +115,28 @@ nnoremap <C-Up> {
 
 "Clear search
 nnoremap <silent> <Leader><Leader> :let @/ = ""<CR>
+
 "Open all buffers in tabs
 nnoremap <silent> <Leader>all :tab sball<CR>
+
+"System yank
+vnoremap <Leader>y "*y
+vnoremap <Leader>Y "*Y
+nnoremap <Leader>y "*y
+nnoremap <Leader>Y "*Y
+
 "System paste
+vnoremap <Leader>p "*p
+vnoremap <Leader>P "*P
 nnoremap <Leader>p "*p
 nnoremap <Leader>P "*P
-"Insert filename
-inoremap <Leader>fn <C-R>=expand("%:t")<CR>
-"Get to snippets
-noremap <Leader>snip :e ~/.vim/snippets/<CR>
+
+"Delete  to null register
+nnoremap <leader>d "_d
+
 "Edit vimrc
 noremap <Leader>rc :e ~/.vimrc<CR>
-noremap <Leader>vrc :vsplit ~/.vimrc<CR>
-noremap <Leader>hrc :split ~/.vimrc<CR>
+
 "cd to curent dir
 nnoremap cd :lcd %:h<CR>:pwd<CR>
 
@@ -187,6 +145,7 @@ nnoremap    v   <C-V>
 nnoremap <C-V>     v
 vnoremap    v   <C-V>
 vnoremap <C-V>     v
+
 "Switch ; and :
 nnoremap  ;  :
 nnoremap  :  ;
@@ -195,6 +154,7 @@ vnoremap  :  ;
 
 "Run on all visual lines
 vnoremap . :normal .<CR>
+
 "Macros on every viusual line
 vnoremap  @  :normal @
 
@@ -204,18 +164,13 @@ nnoremap <silent> <C-J> :wincmd j<CR>
 nnoremap <silent> <C-H> :wincmd h<CR>
 nnoremap <silent> <C-L> :wincmd l<CR>
 
-"Display registedrs and diable normal Q functionality
+"Display registers and diable normal Q functionality
 nnoremap Q :reg<CR>
 
-" allow command line editing like emacs
+"Allow command line editing like emacs
 cnoremap <C-A>      <Home>
 cnoremap <C-B>      <Left>
 cnoremap <C-E>      <End>
 cnoremap <C-F>      <Right>
 cnoremap <C-N>      <End>
 cnoremap <C-P>      <Up>
-"cnoremap <ESC>b     <S-Left>
-"cnoremap <ESC><C-B> <S-Left>
-"cnoremap <ESC>f     <S-Right>
-"cnoremap <ESC><C-F> <S-Right>
-"cnoremap <ESC><C-H> <C-W>
