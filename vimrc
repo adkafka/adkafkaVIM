@@ -11,6 +11,9 @@ let localleader = "\\"
 "Turn Syntax on
 syntax on
 
+"Use light background
+set background=light
+
 "Word wrapping
 set wrap
 set nolist
