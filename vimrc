@@ -1,9 +1,12 @@
+"Set netrw file browser settings
+let g:netrw_banner = 0 "disable help
+let g:netrw_liststyle = 3 "tree browser
+let g:netrw_browse_split = 3 "open new file in new tab
+let g:netrw_winsize = 25 "take up 25% of the page
+
 "Set my Leader as \ (Backslash)
 let mapleader = "\\"
 let localleader = "\\"
-
-"Set background
-set background = "dark"
 
 "Turn Syntax on
 syntax on
@@ -15,7 +18,7 @@ set linebreak
 
 "Tab stuff
 set tabstop=2
-set softtabstop=2
+set softtabstop=-1 "Use shiftwidth
 set shiftwidth=2
 set expandtab
 
