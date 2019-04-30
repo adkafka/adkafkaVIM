@@ -56,6 +56,13 @@ set nofoldenable
 "Set up a dictionary
 set dictionary=/usr/share/dict/words
 
+"Update the dictionary index
+for d in glob('~/.vim/spell/*.add', 1, 1)
+    if filereadable(d) && (!filereadable(d . '.spl') || getftime(d) > getftime(d . '.spl'))
+        exec 'silent mkspell! ' . fnameescape(d)
+    endif
+endfor
+
 "Statusline in .vim/plugin/statusline.vim
 
 """"""""""""""
