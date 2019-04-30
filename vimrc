@@ -12,23 +12,11 @@ if $VIM_CRONTAB == "true"
     set nowritebackup
 endif
 
-"Vim plugins
-call plug#begin('~/.vim/plugged')
-"Vimtex
-Plug 'lervag/vimtex'
-" Add plugins to &runtimepath
-call plug#end()
-
 "Session stuff
 let g:session_autoload = 'no'
 
 "Set snippet author
 let snips_author = "Adam Kafka"
-
-"Load pathogen
-execute pathogen#infect()
-
-let g:tex_flavor = 'latex'
 
 "Set my Leader as \ (Backslash)
 let mapleader = "\\"
@@ -145,13 +133,12 @@ nnoremap cb bcw
 nnoremap cB BcW
 nnoremap gh <C-]>
 
-" gr to previous tab
-nnoremap gr gT
-
 nnoremap L $
 nnoremap H ^
 vnoremap L $
 vnoremap H ^
+
+nnoremap gr gT
 
 vnoremap < <gv
 vnoremap > >gv
@@ -184,8 +171,6 @@ nnoremap <silent> <Leader>all :tab sball<CR>
 "System paste
 nnoremap <Leader>p "*p
 nnoremap <Leader>P "*P
-"Delete  to null register
-nnoremap <leader>d "_d
 "Insert filename
 inoremap <Leader>fn <C-R>=expand("%:t")<CR>
 "Get to snippets
