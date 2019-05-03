@@ -53,6 +53,9 @@ set noswapfile "Dont use swap files
 "Show line numbers
 set number
 
+"Don't change EOL behavior
+set nofixendofline
+
 "Disable autocommenting when using o/O. :help fo-table to see other options
 set formatoptions-=o
  
@@ -114,7 +117,13 @@ vnoremap > >gv
 inoremap jk <Esc>
 inoremap kj <Esc>
 inoremap ;w <Esc>:w<CR>
-
+"Same thing but for neovim
+if has("nvim")
+	inoremap <ESC> <C-\><C-n>
+	tnoremap jk <C-\><C-n>
+	tnoremap kj <C-\><C-n>
+  tnoremap ;w <C-\><C-n>
+endif
 "Add new blank lines in normal mode
 nnoremap <ENTER> o<Esc>
 nnoremap <S-Enter> O<Esc>
