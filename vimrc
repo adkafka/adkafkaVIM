@@ -87,6 +87,17 @@ augroup global
     autocmd!
     autocmd BufRead,BufNewFile * source ~/.vim/syntax/global.vim
 augroup END
+" Spell check on Markdown
+augroup markdown
+  autocmd!
+  autocmd FileType markdown setlocal spell
+augroup END
+" Spell check on Git Commit
+augroup git
+  autocmd!
+  autocmd FileType gitcommit setlocal spell
+augroup END
+
 
 """"""""""
 "MAPPINGS"
