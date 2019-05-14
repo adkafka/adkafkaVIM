@@ -8,6 +8,9 @@ let g:netrw_winsize = 25 "take up 25% of the page
 let mapleader = "\\"
 let localleader = "\\"
 
+"Login to the bash shell
+let &shell='/usr/local/bin/bash --login'
+
 "Turn Syntax on
 syntax on
 
@@ -97,6 +100,14 @@ augroup git
   autocmd!
   autocmd FileType gitcommit setlocal spell
 augroup END
+if has("nvim")
+  " Don't use line numbers in terminal mode
+  augroup TerminalStuff
+    autocmd!
+    autocmd TermOpen * setlocal nonumber norelativenumber
+    autocmd TermOpen * startinsert
+  augroup END
+endif
 
 
 """"""""""
@@ -131,9 +142,7 @@ inoremap ;w <Esc>:w<CR>
 "Same thing but for neovim
 if has("nvim")
 	inoremap <ESC> <C-\><C-n>
-	tnoremap jk <C-\><C-n>
-	tnoremap kj <C-\><C-n>
-  tnoremap ;w <C-\><C-n>
+  tnoremap <ESC><ESC> <C-\><C-n>
 endif
 "Add new blank lines in normal mode
 nnoremap <ENTER> o<Esc>
