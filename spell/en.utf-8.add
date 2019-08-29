@@ -71,3 +71,12 @@ config
 git
 git
 submodules
+GSSQL
+MBS
+bigint
+Datatank
+UTC
+offline
+TSAPI
+telegraf
+DNS
