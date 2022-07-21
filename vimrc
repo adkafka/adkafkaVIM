@@ -10,6 +10,9 @@ Plug 'scrooloose/nerdtree'
 " Initialize plugin system
 call plug#end()
 
+"Set NERDTree settings
+let NERDTreeCustomOpenArgs = {'file': {'reuse': 'all', 'where': 't'}, 'dir': {}} "Open files in new tab
+
 "Set netrw file browser settings
 let g:netrw_banner = 0 "disable help
 let g:netrw_liststyle = 3 "tree browser
@@ -147,6 +150,9 @@ vnoremap H ^
 vnoremap < <gv
 vnoremap > >gv
 
+"Insert the ticket number from git
+nnoremap <Leader>t :0read !git rev-parse --abbrev-ref HEAD \| sed -E 's:([a-z]+)/([A-Z]+-[0-9]+)(.*):\2:g'<CR>
+
 "Esc things
 inoremap jk <Esc>
 inoremap kj <Esc>
@@ -193,12 +199,6 @@ noremap <Leader>rc :e ~/.vimrc<CR>
 
 "cd to curent dir
 nnoremap cd :lcd %:h<CR>:pwd<CR>
-
-"Switch v and ctrl-v
-nnoremap    v   <C-V>
-nnoremap <C-V>     v
-vnoremap    v   <C-V>
-vnoremap <C-V>     v
 
 "Switch ; and :
 nnoremap  ;  :
