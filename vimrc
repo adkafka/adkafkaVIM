@@ -19,6 +19,9 @@ let g:netrw_liststyle = 3 "tree browser
 let g:netrw_browse_split = 3 "open new file in new tab
 let g:netrw_winsize = 25 "take up 25% of the page
 
+"Disable nvim markdown styling
+let g:markdown_recommended_style = 0
+
 "Set my Leader as \ (Backslash)
 let mapleader = "\\"
 let localleader = "\\"
@@ -28,6 +31,9 @@ let &shell='/usr/local/bin/bash --login'
 
 "Turn Syntax on
 syntax on
+
+"Disable stupid neovim mouse mode
+set mouse=
 
 "Use light background
 set background=light
@@ -100,6 +106,11 @@ augroup make
     autocmd!
     autocmd FileType make setlocal noexpandtab
 augroup END
+"Don't expand tabs on golang
+augroup golang
+    autocmd!
+    autocmd FileType go setlocal autoindent noexpandtab tabstop=4 shiftwidth=4
+augroup END
 "Load Global syntax
 augroup global
     autocmd!
@@ -151,7 +162,8 @@ vnoremap < <gv
 vnoremap > >gv
 
 "Insert the ticket number from git
-nnoremap <Leader>t :0read !git rev-parse --abbrev-ref HEAD \| sed -E 's:([a-z]+)/([A-Z]+-[0-9]+)(.*):\2:g'<CR>
+nnoremap <Leader>t :0read !git rev-parse --abbrev-ref HEAD \| sed -E 's:[a-z0-9_]*/?([A-Z]+-[0-9]+)(.*):\1:g'<CR>
+"nnoremap <Leader>t :0read !git rev-parse --abbrev-ref HEAD \| sed -E 's:([a-z]+)/([A-Z]+-[0-9]+)(.*):\2:g'<CR>
 
 "Esc things
 inoremap jk <Esc>
